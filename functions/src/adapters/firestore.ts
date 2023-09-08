@@ -3,6 +3,8 @@ import {Firestore} from "@google-cloud/firestore";
 import * as path from "path";
 
 const filePath: string = path.join(__dirname, "/keys/satrack-firebase.json");
+
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const serviceAccount: Record<string, unknown> = require(filePath);
 
 admin.initializeApp({

@@ -1,17 +1,23 @@
 import {Router} from "express";
-import {tasksAddUseCase} from "../use_cases/tasks/add";
-import {tasksGetUseCase} from "../use_cases/tasks/get";
-import {tasksUpdateUseCase} from "../use_cases/tasks/update";
-import {tasksDeleteUseCase} from "../use_cases/tasks/delete";
+import {TasksAddUseCase} from "../use_cases/tasks/add";
+import container from "../container";
+import {TasksDeleteUseCase} from "../use_cases/tasks/delete";
+import {TasksGetUseCase} from "../use_cases/tasks/get";
+import {TasksUpdateUseCase} from "../use_cases/tasks/update";
 
 const router: Router = Router();
 
 export class RoutesConfig {
   public static tasks(): Router {
-    router.post("/", tasksAddUseCase);
-    router.get("/:userId", tasksGetUseCase);
-    router.put("/:taskId", tasksUpdateUseCase);
-    router.delete("/:taskId", tasksDeleteUseCase);
+    const tasksAddUseCase: TasksAddUseCase = container.resolve(TasksAddUseCase);
+    const tasksGetUseCase: TasksGetUseCase = container.resolve(TasksGetUseCase);
+    const tasksUpdateUseCase: TasksUpdateUseCase = container.resolve(TasksUpdateUseCase);
+    const tasksDeleteUseCase: TasksDeleteUseCase = container.resolve(TasksDeleteUseCase);
+
+    router.post("/", tasksAddUseCase.instance.bind(tasksAddUseCase));
+    router.get("/:userId", tasksGetUseCase.instance.bind(tasksGetUseCase));
+    router.put("/:taskId", tasksUpdateUseCase.instance.bind(tasksUpdateUseCase));
+    router.delete("/:taskId", tasksDeleteUseCase.instance.bind(tasksDeleteUseCase));
 
     return router;
   }
