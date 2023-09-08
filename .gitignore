@@ -68,3 +68,4 @@ node_modules/
 .DS_Store
 .idea
 frontend/dist
+.angular

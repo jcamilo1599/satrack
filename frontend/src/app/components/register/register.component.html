@@ -1,0 +1,26 @@
+<h2 mat-dialog-title>Registrarse</h2>
+
+<mat-dialog-content>
+    <form [formGroup]="registerForm" (ngSubmit)="register()">
+        <div class="container-field mt-10">
+            <mat-form-field appearance="outline">
+                <mat-label>Correo Electrónico</mat-label>
+                <input matInput formControlName="registerEmail" required>
+            </mat-form-field>
+        </div>
+
+        <div class="container-field">
+            <mat-form-field appearance="outline">
+                <mat-label>Contraseña</mat-label>
+                <input matInput type="password" formControlName="registerPassword" required>
+            </mat-form-field>
+        </div>
+    </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cerrar</button>
+    <button mat-raised-button color="primary" type="button" (click)="register()" [disabled]="registerForm.invalid">
+        Registrarse
+    </button>
+</mat-dialog-actions>

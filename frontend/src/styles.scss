@@ -1,0 +1,42 @@
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.m-20 {
+  padding: 20px;
+}
+
+.mt-10 {
+  margin-top: 10px;
+}
+
+.mr-10 {
+  margin-right: 10px;
+}
+
+.container-field {
+  display: inline-block;
+  width: 100%;
+  max-width: 400px;
+
+  mat-form-field {
+    width: 100%;
+  }
+}
+
+.h-btns {
+  display: flex;
+
+  * {
+    margin-right: 10px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
