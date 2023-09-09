@@ -48,4 +48,10 @@ export class FirebaseTasksRepository implements ITasksRepository {
       deadline,
     });
   }
+
+  completeTask(taskId: string): Promise<FirebaseFirestore.WriteResult> {
+    return db.collection("tasks").doc(taskId).update({
+      completed: true,
+    });
+  }
 }

@@ -23,4 +23,6 @@ export interface ITasksRepository {
     category: number,
     deadline: number,
   ): Promise<WriteResult>;
+
+  completeTask(taskId: string): Promise<WriteResult>;
 }
