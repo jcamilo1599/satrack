@@ -17,6 +17,8 @@ El hosting se puede encontrar en `https://satrack-2485a.web.app/`.
   filtro que permite filtrar todos los datos de la tabla por cualquier dato.
 - En la tabla con las tareas, en la parte derecha se encuentra un botón con un icono de 3 puntos, el cual al presionar
   abre un menú que tiene 3 opciones (Completar, Editar y Eliminar), las cuales tenía como requisito la prueba.
+- Con diseño responsivo tal como lo indica la prueba. La tabla con lista de tareas, habilita un scroll en la parte
+  inferior según sea necesario.
 
 ## Información Backend
 
