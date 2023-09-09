@@ -1,0 +1,42 @@
+<h2 mat-dialog-title>Tarea</h2>
+
+<mat-dialog-content>
+    <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+        <div class="container-field">
+            <mat-form-field appearance="outline">
+                <input matInput formControlName="title" placeholder="Título" required>
+            </mat-form-field>
+        </div>
+
+        <div class="container-field">
+            <mat-form-field appearance="outline">
+                <textarea matInput formControlName="description" placeholder="Descripción" required></textarea>
+            </mat-form-field>
+        </div>
+
+        <div class="container-field">
+            <mat-form-field appearance="outline">
+                <mat-label>Categoría</mat-label>
+                <mat-select formControlName="category" placeholder="Selecciona una categoría" required>
+                    <mat-option *ngFor="let category of categories" [value]="category">{{ category }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <div class="container-field">
+            <mat-form-field appearance="outline">
+                <input matInput [matDatepicker]="deadlinePicker" formControlName="deadline" placeholder="Fecha límite">
+                <mat-datepicker-toggle matSuffix [for]="deadlinePicker"></mat-datepicker-toggle>
+                <mat-datepicker #deadlinePicker></mat-datepicker>
+            </mat-form-field>
+        </div>
+    </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cerrar</button>
+    <button mat-raised-button color="primary" type="button" (click)="onSubmit()" [disabled]="taskForm.invalid">
+        <span *ngIf="!taskData">Crear Tarea</span>
+        <span *ngIf="taskData">Actualizar Tarea</span>
+    </button>
+</mat-dialog-actions>

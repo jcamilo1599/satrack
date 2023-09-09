@@ -1,6 +1,6 @@
 <!-- cabecera -->
 <mat-toolbar color="primary">
-    <button mat-icon-button class="mr-10">
+    <button *ngIf="isLoggin()" mat-icon-button class="mr-10">
         <mat-icon>menu</mat-icon>
     </button>
 

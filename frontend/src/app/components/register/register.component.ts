@@ -39,6 +39,7 @@ export class RegisterComponent {
 
         sessionStorage.setItem("user", JSON.stringify(user));
         sessionStorage.setItem("token", idToken);
+        sessionStorage.setItem("userId", user.uid);
 
         await this.router.navigate(["/"]);
       } else {
@@ -54,6 +55,8 @@ export class RegisterComponent {
   }
 
   openSnackBar(message: string, action: string) {
-    this._snackBar.open(message, action);
+    this._snackBar.open(message, action, {
+      duration: 3000
+    });
   }
 }
