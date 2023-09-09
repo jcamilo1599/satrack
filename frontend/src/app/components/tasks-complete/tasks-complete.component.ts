@@ -3,18 +3,18 @@ import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {TaskModel} from "../../models/task";
 
 @Component({
-  selector: "app-tasks-delete",
-  templateUrl: "./tasks-delete.component.html",
-  styleUrls: ["./tasks-delete.component.scss"]
+  selector: "app-tasks-complete",
+  templateUrl: "./tasks-complete.component.html",
+  styleUrls: ["./tasks-complete.component.scss"]
 })
-export class TasksDeleteComponent {
+export class TasksCompleteComponent {
   constructor(
-    private dialogRef: MatDialogRef<TasksDeleteComponent>,
+    private dialogRef: MatDialogRef<TasksCompleteComponent>,
     @Optional() @Inject(MAT_DIALOG_DATA) public taskData?: TaskModel,
   ) {
   }
 
-  deleteTask() {
+  completeTask() {
     this.dialogRef.close(true);
   }
 }

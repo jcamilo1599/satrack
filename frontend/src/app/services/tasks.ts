@@ -32,4 +32,11 @@ export class TasksService {
 
     return this.http.delete(url, {params});
   }
+
+  ccompleteTask(taskId: any, userId: any): Observable<any> {
+    const url = `${this.tasksUrl}${taskId}/complete`
+    const params = new HttpParams().set("userId", userId);
+
+    return this.http.put(url, undefined, {params});
+  }
 }

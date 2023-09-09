@@ -1,0 +1,10 @@
+<h2 mat-dialog-title>¿Completar tarea?</h2>
+
+<mat-dialog-content>
+    <p>La tarea <b>{{taskData?.title}}</b> será marcada como completada</p>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cerrar</button>
+    <button mat-raised-button color="primary" type="button" (click)="completeTask()">Completar Tarea</button>
+</mat-dialog-actions>

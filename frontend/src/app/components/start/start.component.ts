@@ -1,10 +1,13 @@
-import {Component} from "@angular/core";
+import {Component, ViewChild} from "@angular/core";
 import {TaskModel} from "../../models/task";
 import {TasksService} from "../../services/tasks";
 import {MatDialog} from "@angular/material/dialog";
 import {TasksFormComponent} from "../tasks-form/tasks-form.component";
 import {TasksDeleteComponent} from "../tasks-delete/tasks-delete.component";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {MatTableDataSource} from "@angular/material/table";
+import {MatPaginator} from "@angular/material/paginator";
+import {TasksCompleteComponent} from "../tasks-complete/tasks-complete.component";
 
 @Component({
   selector: "app-start",
@@ -12,15 +15,19 @@ import {MatSnackBar} from "@angular/material/snack-bar";
   styleUrls: ["./start.component.scss"]
 })
 export class StartComponent {
-  dataSource: TaskModel[] = [];
-  displayedColumns: string[] = ["title", "description", "category", "deadline", "actions"];
+  dataSource: MatTableDataSource<TaskModel>;
+  displayedColumns: string[] = ["title", "description", "category", "deadline", "completed", "actions"];
   userId?: string
+
+  @ViewChild(MatPaginator) paginator?: MatPaginator;
 
   constructor(
     private tasksService: TasksService,
     public dialog: MatDialog,
     private _snackBar: MatSnackBar,
   ) {
+    const baseDataSource: TaskModel[] = [];
+    this.dataSource = new MatTableDataSource(baseDataSource);
   }
 
   ngOnInit(): void {
@@ -30,7 +37,8 @@ export class StartComponent {
 
   private getTasks() {
     this.tasksService.getTasks(this.userId ?? "").subscribe((tasks) => {
-      this.dataSource = tasks;
+      this.dataSource = new MatTableDataSource(tasks);
+      this.dataSource.paginator = this.paginator!;
     });
   }
 
@@ -46,7 +54,7 @@ export class StartComponent {
 
     dialogRef.beforeClosed().subscribe((action: boolean): void => {
       if (action) {
-        this.tasksService.deleteTask(taskId, this.userId ?? "").subscribe((tasks) => {
+        this.tasksService.deleteTask(taskId, this.userId ?? "").subscribe(() => {
           this.getTasks();
           this.openSnackBar("Tarea eliminada", "CERRAR");
         });
@@ -54,8 +62,24 @@ export class StartComponent {
     });
   }
 
+  completeTask(taskId: string) {
+    const dialogRef = this.dialog.open(TasksCompleteComponent, {
+      width: "400px",
+      data: this.getTaskById(taskId),
+    });
+
+    dialogRef.beforeClosed().subscribe((action: boolean): void => {
+      if (action) {
+        this.tasksService.ccompleteTask(taskId, this.userId ?? "").subscribe(() => {
+          this.getTasks();
+          this.openSnackBar("Tarea completada", "CERRAR");
+        });
+      }
+    });
+  }
+
   private getTaskById(taskId: string): TaskModel | undefined {
-    return this.dataSource.find((task) => task.id === taskId);
+    return this.dataSource.data.find((task) => task.id === taskId);
   }
 
   openDialogTask(task?: TaskModel) {
@@ -75,5 +99,14 @@ export class StartComponent {
     this._snackBar.open(message, action, {
       duration: 3000
     });
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
 }

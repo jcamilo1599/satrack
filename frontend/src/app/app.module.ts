@@ -18,6 +18,7 @@ import {MatSelectModule} from "@angular/material/select";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
 import {MatMenuModule} from "@angular/material/menu";
+import {MatPaginatorModule} from "@angular/material/paginator";
 
 import {AppRoutingModule} from "./app-routing.module";
 import {AppComponent} from "./app.component";
@@ -27,6 +28,7 @@ import {LoginComponent} from "./components/login/login.component";
 import {TasksFormComponent} from "./components/tasks-form/tasks-form.component";
 import {TasksDeleteComponent} from "./components/tasks-delete/tasks-delete.component";
 import {RegisterComponent} from "./components/register/register.component";
+import { TasksCompleteComponent } from './components/tasks-complete/tasks-complete.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,8 @@ import {RegisterComponent} from "./components/register/register.component";
     LoginComponent,
     TasksFormComponent,
     TasksDeleteComponent,
-    RegisterComponent
+    RegisterComponent,
+    TasksCompleteComponent
   ],
   imports: [
     BrowserModule,
@@ -56,6 +59,7 @@ import {RegisterComponent} from "./components/register/register.component";
     MatDatepickerModule,
     MatNativeDateModule,
     MatMenuModule,
+    MatPaginatorModule,
     FormsModule,
     ReactiveFormsModule,
   ],

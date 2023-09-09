@@ -8,48 +8,73 @@
         </button>
     </div>
 
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 mt-20">
-        <ng-container matColumnDef="title">
-            <th mat-header-cell *matHeaderCellDef>Título</th>
-            <td mat-cell *matCellDef="let element">{{element.title}}</td>
-        </ng-container>
+    <div class="container-field mt-20 float-right">
+        <mat-form-field appearance="outline">
+            <mat-label>Filtrar...</mat-label>
+            <input matInput (keyup)="applyFilter($event)" #input>
+        </mat-form-field>
+    </div>
+    <div class="clear"></div>
 
-        <ng-container matColumnDef="description">
-            <th mat-header-cell *matHeaderCellDef>Descripción</th>
-            <td mat-cell *matCellDef="let element">{{element.description}}</td>
-        </ng-container>
+    <div class="mat-elevation-z8">
+        <table [dataSource]="dataSource" mat-table matSort>
+            <ng-container matColumnDef="title">
+                <th mat-header-cell *matHeaderCellDef>Título</th>
+                <td mat-cell *matCellDef="let element">{{element.title}}</td>
+            </ng-container>
 
-        <ng-container matColumnDef="category">
-            <th mat-header-cell *matHeaderCellDef>Categoría</th>
-            <td mat-cell *matCellDef="let element">{{element.category}}</td>
-        </ng-container>
+            <ng-container matColumnDef="description">
+                <th mat-header-cell *matHeaderCellDef>Descripción</th>
+                <td mat-cell *matCellDef="let element">{{element.description}}</td>
+            </ng-container>
 
-        <ng-container matColumnDef="deadline">
-            <th mat-header-cell *matHeaderCellDef>Fecha limite</th>
-            <td mat-cell *matCellDef="let element">{{element.deadline}}</td>
-        </ng-container>
+            <ng-container matColumnDef="category">
+                <th mat-header-cell *matHeaderCellDef>Categoría</th>
+                <td mat-cell *matCellDef="let element">{{element.category}}</td>
+            </ng-container>
 
-        <ng-container matColumnDef="actions">
-            <th mat-header-cell *matHeaderCellDef>Acciones</th>
-            <td mat-cell *matCellDef="let element">
-                <button mat-icon-button [matMenuTriggerFor]="menu">
-                    <mat-icon>more_vert</mat-icon>
-                </button>
+            <ng-container matColumnDef="deadline">
+                <th mat-header-cell *matHeaderCellDef>Fecha limite</th>
+                <td mat-cell *matCellDef="let element">{{element.deadline}}</td>
+            </ng-container>
 
-                <mat-menu #menu="matMenu">
-                    <button (click)="editTask(element.id)" mat-menu-item>
-                        <mat-icon>edit</mat-icon>
-                        <span>Editar</span>
+            <ng-container matColumnDef="completed">
+                <th mat-header-cell *matHeaderCellDef>Estado</th>
+                <td mat-cell *matCellDef="let element">
+                    <span *ngIf="element.completed" class="green">Completada</span>
+                    <span *ngIf="!element.completed" class="blue">Pendiente</span>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef>Acciones</th>
+                <td mat-cell *matCellDef="let element">
+                    <button mat-icon-button [matMenuTriggerFor]="menu">
+                        <mat-icon>more_vert</mat-icon>
                     </button>
 
-                    <button (click)="deleteTask(element.id)" mat-menu-item>
-                        <mat-icon>delete</mat-icon>
-                        <span>Eliminar</span>
-                    </button>
-                </mat-menu>
-        </ng-container>
+                    <mat-menu #menu="matMenu">
+                        <button (click)="completeTask(element.id)" mat-menu-item [disabled]="element.completed">
+                            <mat-icon>done</mat-icon>
+                            <span>Completar</span>
+                        </button>
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
+                        <button (click)="editTask(element.id)" mat-menu-item>
+                            <mat-icon>edit</mat-icon>
+                            <span>Editar</span>
+                        </button>
+
+                        <button (click)="deleteTask(element.id)" mat-menu-item>
+                            <mat-icon>delete</mat-icon>
+                            <span>Eliminar</span>
+                        </button>
+                    </mat-menu>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+        <mat-paginator [pageSizeOptions]='[5, 10, 25, 100]'></mat-paginator>
+    </div>
 </div>
