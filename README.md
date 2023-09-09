@@ -13,6 +13,10 @@ El hosting se puede encontrar en `https://satrack-2485a.web.app/`.
 - Se desarrollo con angular v16 y material angular v16.2.3.
 - Para ejecutar de forma local, se debe ingresar a la carpeta "frontend" desde la terminal `cd frontend`,
   posteriormente ejecutar el comando `npm start`. En la terminal indicará el puerto del servidor local.
+- Como requerimiento de la prueba técnica se solicitaba que las tareas pudieran ser filtradas por categoría; se añade un
+  filtro que permite filtrar todos los datos de la tabla por cualquier dato.
+- En la tabla con las tareas, en la parte derecha se encuentra un botón con un icono de 3 puntos, el cual al presionar
+  abre un menú que tiene 3 opciones (Completar, Editar y Eliminar), las cuales tenía como requisito la prueba.
 
 ## Información Backend
 
