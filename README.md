@@ -27,3 +27,5 @@ El hosting se puede encontrar en `https://satrack-2485a.web.app/`.
 - Para ejecutar localmente, se debe ingresar a la carpeta "functions" desde la termina `cd functions`, posteriormente
   ejecutar el comando `npm run serve`. En la terminal indicará el servidor local (similar
   a `http://127.0.0.1:5001/satrack-2485a/us-central1/api`).
+- En el directorio base se encuentra un archivo llamado `tasks.postman_collection.json`, el cual es de Postman y cuenta
+  con todos los servicios.

@@ -1,0 +1,200 @@
+{
+	"info": {
+		"_postman_id": "0e6ba2f7-604a-4ab3-9eac-0ea25d164a69",
+		"name": "tasks",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "4454005"
+	},
+	"item": [
+		{
+			"name": "crear",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Título\",\n    \"description\": \"Descripción...\",\n    \"category\": \"7\",\n    \"deadline\": 123456,\n    \"userId\": \"123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5001/satrack-2485a/us-central1/api/tasks",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5001",
+					"path": [
+						"satrack-2485a",
+						"us-central1",
+						"api",
+						"tasks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "obtener",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5001/satrack-2485a/us-central1/api/tasks/123",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5001",
+					"path": [
+						"satrack-2485a",
+						"us-central1",
+						"api",
+						"tasks",
+						"123"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "actualizar",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Título11\",\n    \"description\": \"Descripción11...\",\n    \"userId\": \"1234\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5001/satrack-2485a/us-central1/api/tasks/yfgj58BP8HvO6AYdJPry",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5001",
+					"path": [
+						"satrack-2485a",
+						"us-central1",
+						"api",
+						"tasks",
+						"yfgj58BP8HvO6AYdJPry"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "completar",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5001/satrack-2485a/us-central1/api/tasks/tOkHHpqs4ZIoUzkJQTpC/complete?userId=123",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5001",
+					"path": [
+						"satrack-2485a",
+						"us-central1",
+						"api",
+						"tasks",
+						"tOkHHpqs4ZIoUzkJQTpC",
+						"complete"
+					],
+					"query": [
+						{
+							"key": "userId",
+							"value": "123"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "eliminar",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5001/satrack-2485a/us-central1/api/tasks/6zaitDiG6q3eWfelaiP3?userId=1234",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5001",
+					"path": [
+						"satrack-2485a",
+						"us-central1",
+						"api",
+						"tasks",
+						"6zaitDiG6q3eWfelaiP3"
+					],
+					"query": [
+						{
+							"key": "userId",
+							"value": "1234"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "crear (prod)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Título1\",\n    \"description\": \"Descripción...\",\n    \"category\": \"7\",\n    \"deadline\": 123456,\n    \"userId\": \"123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://us-central1-satrack-2485a.cloudfunctions.net/api/tasks",
+					"protocol": "https",
+					"host": [
+						"us-central1-satrack-2485a",
+						"cloudfunctions",
+						"net"
+					],
+					"path": [
+						"api",
+						"tasks"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
