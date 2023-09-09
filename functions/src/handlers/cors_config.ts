@@ -4,8 +4,8 @@ import * as cors from "cors";
 const allowedOrigins: Array<string | undefined> = [
   undefined,
   "http://localhost:4200",
-  "https://satrack-67716.web.app",
-  "https://satrack-67716.firebaseapp.com",
+  "https://satrack-2485a.web.app",
+  "https://satrack-2485a.firebaseapp.com",
 ];
 
 export function corsConfig(): Handler {

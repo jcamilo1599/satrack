@@ -23,6 +23,12 @@
     "predeploy": [
       "npm --prefix frontend run build"
     ],
+    "rewrites": [
+      {
+        "source": "/**",
+        "destination": "/index.html"
+      }
+    ],
     "public": "frontend/dist",
     "ignore": [
       "firebase.json",
