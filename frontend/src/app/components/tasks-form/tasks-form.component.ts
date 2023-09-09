@@ -65,7 +65,7 @@ export class TasksFormComponent {
   private createTask(formData: any) {
     this.tasksService.createTask(formData).subscribe(
       () => {
-        this.dialogRef.close();
+        this.dialogRef.close(true);
         this.openSnackBar("Tarea creada correctamente", "CERRAR");
       },
       () => {
@@ -77,7 +77,7 @@ export class TasksFormComponent {
   private updateTask(formData: any) {
     this.tasksService.updateTask(this.taskData?.id, formData).subscribe(
       () => {
-        this.dialogRef.close();
+        this.dialogRef.close(true);
         this.openSnackBar("Tarea actualizada correctamente", "CERRAR");
       },
       () => {

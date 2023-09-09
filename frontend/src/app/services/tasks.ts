@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {TaskModel} from "../models/task";
 
@@ -24,5 +24,12 @@ export class TasksService {
   updateTask(taskId: any, taskData: any): Observable<any> {
     const url = `${this.tasksUrl}${taskId}`
     return this.http.put(url, taskData);
+  }
+
+  deleteTask(taskId: any, userId: any): Observable<any> {
+    const url = `${this.tasksUrl}${taskId}`
+    const params = new HttpParams().set("userId", userId);
+
+    return this.http.delete(url, {params});
   }
 }
