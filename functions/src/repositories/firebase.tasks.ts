@@ -17,6 +17,7 @@ export class FirebaseTasksRepository implements ITasksRepository {
       category,
       deadline,
       userId,
+      completed: false,
       createdAt: Date.now(),
     });
   }
