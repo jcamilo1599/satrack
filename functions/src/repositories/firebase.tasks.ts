@@ -30,7 +30,7 @@ export class FirebaseTasksRepository implements ITasksRepository {
   }
 
   getTasks(userId: string): Promise<FirebaseFirestore.QuerySnapshot<FirebaseFirestore.DocumentData>> {
-    return db.collection("tasks").where("userId", "==", userId).get();
+    return db.collection("tasks").where("userId", "==", userId).orderBy("createdAt", "desc").get();
   }
 
   update(
